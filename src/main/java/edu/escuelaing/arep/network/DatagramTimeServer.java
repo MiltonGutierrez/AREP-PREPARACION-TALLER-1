@@ -13,17 +13,17 @@ public class DatagramTimeServer {
 
     DatagramSocket socket;
 
-    public DatagramTimeServer() {
-        try {
-            socket = new DatagramSocket(4445);
-        } catch (SocketException ex) {
-            Logger.getLogger(DatagramTimeServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
 
     public void startServer() {
         while (true) {
             byte[] buf = new byte[256];
+            try {
+                socket = new DatagramSocket(4445);
+            } catch (SocketException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
             try {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
