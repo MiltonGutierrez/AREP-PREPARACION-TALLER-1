@@ -12,6 +12,7 @@ public class DatagramTimeClient {
 
     public static void main(String[] args) {
         byte[] sendBuf = new byte[256];
+        String lastDateRecieved = "There's no date recieved";
         while(true){
             try {
                 DatagramSocket socket = new DatagramSocket();
@@ -19,11 +20,17 @@ public class DatagramTimeClient {
                 InetAddress address = InetAddress.getByName("127.0.0.1");
                 DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
                 socket.send(packet);
-    
-                packet = new DatagramPacket(buf, buf.length);
-                socket.receive(packet);
-                String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Date: " + received);
+                try {
+                    socket.setSoTimeout(5000);  // Tiempo de espera de 5 segundos
+                    packet = new DatagramPacket(buf, buf.length);
+                    socket.receive(packet);
+                    String received = new String(packet.getData(), 0, packet.getLength());
+                    lastDateRecieved = received; // Actualizamos la hora con la que recibimos
+                } catch (IOException e) {
+                    // Si no se recibe ningún paquete, mantenemos la última hora
+                    System.out.println("No se recibió la hora. Manteniendo la última hora conocida.");
+                }
+                System.out.println(lastDateRecieved);
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
