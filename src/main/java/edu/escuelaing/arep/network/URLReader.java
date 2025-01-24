@@ -52,7 +52,7 @@ public class URLReader {
     }
 
     public static void main(String[] args) {
-        URLReader.readURLValues("https://www.google.com/");
-        URLReader.saveHTMLFile();
+        URLReader.readURLValues("http://ldbn.escuelaing.edu.co:80/index.html?docid=1#eventos");
+        //URLReader.saveHTMLFile();
     }
 }
