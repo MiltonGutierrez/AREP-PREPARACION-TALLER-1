@@ -1,9 +1,13 @@
 package edu.escuelaing.arep.network;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-public class EchoServerSquaredNumber {
+public class EchoServer {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
         try {
@@ -24,8 +28,7 @@ public class EchoServerSquaredNumber {
         String inputLine, outputLine;
         while ((inputLine = in.readLine()) != null) {
             System.out.println("Mensaje:" + inputLine);
-            int number = Integer.parseInt(inputLine) * Integer.parseInt(inputLine); 
-            outputLine = "Respuesta" + number;
+            outputLine = "Respuesta" + inputLine;
             out.println(outputLine);
             if (outputLine.equals("Respuesta: Bye."))break;
         }
@@ -34,4 +37,5 @@ public class EchoServerSquaredNumber {
         clientSocket.close();
         serverSocket.close();
     }
+    
 }

@@ -39,12 +39,12 @@ public class EchoServerMathFunction {
                 }
                 outputLine = "Respuesta " + number;
                 out.println(outputLine);
-                if (outputLine.equals("Respuestas: Bye."))break;
+                if (outputLine.equals("Respuesta: Bye."))break;
             } catch (Exception e) {
                 function = inputLine.replaceAll("fun:", "");
                 outputLine = "Respuesta " + function;
                 out.println(outputLine);
-                if (outputLine.equals("Respuestas: Bye."))break;
+                if (outputLine.equals("Respuesta: Bye."))break;
             }
 
         }

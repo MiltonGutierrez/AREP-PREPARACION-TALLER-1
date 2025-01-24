@@ -35,10 +35,11 @@ public class HttpServer {
                     break;
                 }
             }
-            String httpResponse = "HTTP/1.1 200 OK\r\n\r\n"; 
-            clientSocket.getOutputStream().write(httpResponse.getBytes("UTF-8"));
-
-            outputLine = "<!DOCTYPE html>"
+            
+            outputLine = "HTTP/1.1 200 OK\r\n" 
+                    + "Content-Type: text/html\r\n"
+                    + "\r\n" 
+                    + "<!DOCTYPE html>"
                     + "<html>"
                     + "<head>"
                     + "<meta charset=\"UTF-8\">"
