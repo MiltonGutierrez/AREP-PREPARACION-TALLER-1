@@ -21,13 +21,32 @@ public class EchoServerMathFunction {
         }
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String inputLine, outputLine;
+        String inputLine, outputLine, function;
+        function = "cos";
+        double number;
         while ((inputLine = in.readLine()) != null) {
             System.out.println("Mensaje:" + inputLine);
-            int number = Integer.parseInt(inputLine) * Integer.parseInt(inputLine); 
-            outputLine = "Respuesta" + number;
-            out.println(outputLine);
-            if (outputLine.equals("Respuestas: Bye."))break;
+            try {
+                number = Double.parseDouble(inputLine);
+                if(function.equals("cos")){
+                    number = Math.cos(number);
+                }
+                else if(function.equals("sin")){
+                    number = Math.sin(number);
+                }
+                else{
+                    number = Math.tan(number);
+                }
+                outputLine = "Respuesta " + number;
+                out.println(outputLine);
+                if (outputLine.equals("Respuestas: Bye."))break;
+            } catch (Exception e) {
+                function = inputLine.replaceAll("fun:", "");
+                outputLine = "Respuesta " + function;
+                out.println(outputLine);
+                if (outputLine.equals("Respuestas: Bye."))break;
+            }
+
         }
         out.close();
         in.close();
