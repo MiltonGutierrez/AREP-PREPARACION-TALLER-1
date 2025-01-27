@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 public class DatagramTimeClient {
 
     public static void main(String[] args) {
-        byte[] sendBuf = new byte[256];
         String lastDateRecieved = "There's no date recieved";
-        while(true){
+        boolean running = true;
+        while(running){
             try {
                 DatagramSocket socket = new DatagramSocket();
                 byte[] buf = new byte[256];

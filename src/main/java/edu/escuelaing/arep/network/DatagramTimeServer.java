@@ -16,7 +16,9 @@ public class DatagramTimeServer {
 
 
     public void startServer() {
-        while (true) {
+
+        boolean running = true;
+        while (running) {
             byte[] buf = new byte[256];
             try {
                 socket = new DatagramSocket(4445);
